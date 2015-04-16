@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery OuterHTML 2.1 - Darlesson Oliveira</title>
+
+<link type="text/css" rel="stylesheet" href="css/styles.css" />
+
+<script type="text/javascript" src="javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../source/outerHTML-2.1.0.js"></script>
+
+<script type="text/javascript">
+$(function(){
+
+	$("#whoAreYou").click(function(){
+
+		alert($("#test1 div").outerHTML());
+
+	});
+
+    $("#transform").click(function(){
+
+        var replacingContent = "<a hre='#'>Replacing link</a>";
+
+    	$("#transformLink span").outerHTML(replacingContent);
+
+    });
+
+	$("#transformLinkToSpan").click(function(){
+
+		$("#transformSpan a").outerHTML(function(index, outerHTML){
+
+			var $this = $(this),
+				textContent = $this.text();
+
+			$this.outerHTML("<span>" + textContent + "</span>");
+
+		});
+
+	});
+
+});
+</script>
+
+</head>
+
+<body>
+
+	<em>jQuery outerHTML v2.1.0. Copyright 2012, <a href="http://darlesson.com/" target="_blank">Darlesson Oliveira</a>. Dual licensed under the MIT and GPL licenses.</em>
+
+	<h1>jQuery outerHTML</h1>
+
+    <p>
+        Unlike .html() that returns only the element's HTML content,
+        .outerHTML() returns the selected element and its HTML content or replaces it as .replaceWith()
+        method but with the difference that allows the replacing HTML to be inherit by the chaining. This version
+        introduces support to replace a set of matched elements by DOM Elements and jQuery objects. It also introduces
+        the support to .outerHTML( function ). Check Notes of the Version for more details.
+    </p>
+
+    <div class="title" style="margin-top:20px;">
+    	<h2>.outerHTML()</h2>
+    </div>
+
+    <p>
+        Get the HTML of the first element and with its contents in the set of matched elements.
+    </p>
+
+    <p>
+        Consider the following set of elements and the outerHTML call:
+    </p>
+
+<pre class="code"><code class="javascript">
+    &lt;div>I am DIV one&lt;/div>
+    &lt;div>I am DIV two&lt;/div>
+    &lt;div>I am DIV three&lt;/div>
+
+    &lt;button id="whoAreYou">Who are you?&lt;/button>
+
+</code></pre>
+
+<pre class="code"><code class="javascript">
+    $("#whoAreYou").click(function(){
+
+    	$("div").outerHTML();
+
+    });
+
+</code></pre>
+
+    <p>
+        Click on the button to see the result
+    </p>
+
+    <div id="test1" style="display:none;">
+        <div>I am DIV one</div>
+        <div>I am DIV two</div>
+        <div>I am DIV three</div>
+    </div>
+
+    <p>
+    	<input id="whoAreYou" type="button" value="Who are you?" />
+    </p>
+
+    <p>
+		This method uses the browser's outerHTML property that is available for most of the popular browsers
+        except Firefox. When the property is not available, the element is cloned using the browser's
+        cloneNode or jQuery's clone, appended to a temporary node and the innerHTML is got from there.
+    </p>
+
+    <div class="title" style="margin-top:20px;">
+    	<h2>.outerHTML( newContent )</h2>
+    </div>
+
+	<dl>
+    	<dt>
+        	<tt>newContent</tt>
+        </dt>
+        <dd>
+        	<i>(HTML string | DOM Element | jQuery object)(optional)</i> The replacing content. May be an
+            HTML string, DOM element, or jQuery object.
+        </dd>
+    </dl>
+
+    <p>
+        Get the set of matched elements and replace them by the new content and returns the set of
+        replacing elements.
+    </p>
+
+    <p>
+        Consider the following set of elements and the outerHTML call:
+    </p>
+
+<pre class="code"><code class="javascript">
+    &lt;div>
+    	&lt;span>First link&lt;/span>
+    &lt;/div>
+    &lt;div>
+    	&lt;span>Second link&lt;/span>
+    &lt;/div>
+    &lt;div>
+    	&lt;span>Third link&lt;/span>
+    &lt;/div>
+
+    &lt;button id="transform">Transform to link&lt;/button>
+
+</code></pre>
+
+<pre class="code"><code class="javascript">
+    $("#transform").click(function(){
+
+        var replacingContent = "&lt;a hre='#'>Replace span for a link&lt;/a>";
+
+    	$("span").outerHTML(replacingContent);
+
+    });
+
+</code></pre>
+
+    <div class="demo" id="transformLink">
+        <div>
+            <span>First link</span>
+        </div>
+        <div>
+            <span>Second link</span>
+        </div>
+        <div>
+            <span>Third link</span>
+        </div>
+    </div>
+
+    <p>
+    	<input id="transform" type="button" value="Replace span for a link" />
+    </p>
+
+    <div class="title" style="margin-top:20px;">
+    	<h2>.outerHTML( function(index, outerHTML) )</h2>
+    </div>
+
+	<dl>
+    	<dt>
+        	<tt>function</tt>
+        </dt>
+        <dd>
+        	<i>(Function)(optional)</i> A function that returns
+            content with which to replace the set of matched elements.
+        </dd>
+    </dl>
+
+    <p>
+        Get the set of matched elements and return them in a function as including
+        their index the their outerHTML
+    </p>
+
+    <p>
+        Consider the following set of links being replaced to become an span but preserving the oringinal
+        text contet:
+    </p>
+
+<pre class="code"><code class="javascript">
+    &lt;div>
+    	&lt;span>First link&lt;/span>
+    &lt;/div>
+    &lt;div>
+    	&lt;span>Second link&lt;/span>
+    &lt;/div>
+    &lt;div>
+    	&lt;span>Third link&lt;/span>
+    &lt;/div>
+
+    &lt;button id="transformLinkToSpan">Transform to link&lt;/button>
+
+</code></pre>
+
+<pre class="code"><code class="javascript">
+    $("#transformLinkToSpan").click(function(){
+
+        $("a").outerHTML(function(index, outerHTML){
+
+            var $this = $(this),
+                textContent = $this.text();
+
+            $this.outerHTML("&lt;span>" + textContent + "&lt;/span>");
+
+        });
+
+    });
+
+</code></pre>
+
+    <div class="demo" id="transformSpan">
+        <div>
+            <a href="#">Google</a>
+        </div>
+        <div>
+            <a href="#">Yahoo</a>
+        </div>
+        <div>
+            <a href="#">MSN</a>
+        </div>
+    </div>
+
+    <p>
+    	<input id="transformLinkToSpan" type="button" value="Transform link to span" />
+    </p>
+
+    <div class="title" style="margin-top:20px;">
+    	<h2>Notes of the Version</h2>
+    </div>
+
+    <ul>
+    	<li>Fix replacing for multiple matched elements</li>
+        <li>Add support to replace matched elements with DOM Elements and jQuery object</li>
+        <li>Use of the browser's properties outerHTML and cloneNode when available to improve preformance</li>
+        <li>Introduce the support to function as parameter</li>
+        <li>Fix the return for browsers that don't support outerHTML natively but support cloneNode (i.e. Firefox, ...)</li>
+    </ul>
+
+    <div class="title" style="margin-top:20px;">
+    	<h2>Support</h2>
+    </div>
+
+    <p>
+    	This code is free of charge under the MIT and GPL licenses. But if you think it helped you saving your time,
+        please support me financially or adding my website link (http://darlesson.com/) in yours to keep sharing, creating and improving my codes.
+    </p>
+
+    <p>
+    	To report bugs, send comments or suggestions please go to <a href="http://darlesson.com/contact/" target="_blank">my contact page</a>.
+    </p>
+
+	<a href="http://darlesson.com/donate/" target="_blank"><img src="images/btn_donate_LG.gif" alt="Support through donation" /></a>
+
+</body>
+</html>

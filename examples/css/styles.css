@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+body, html, input, textarea, select{ font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; font-size:14px;}
+body{ margin:20px 20px 40px 20px;}
+h1, h2, h3, h4, h5, h6{ color:#0D2B44; font-family:Georgia, "Times New Roman", Times, serif; font-smooth:always; font-weight:lighter; text-shadow:1px 1px 1px #B7B9B9;}
+h1{ margin-top:40px;}
+a{ color:#34709F; text-decoration:none;}
+a:hover{ text-decoration:underline;}
+img{ border:none;}
+em{ color:#666;}
+body > em:first-child{ display:block; position:absolute; top:10px; right:20px; padding-left:20px;}
+
+.title{ overflow:hidden; margin:40px 0px 10px 0px;}
+.title h2{ display:block; float:left; margin:0px 0px;}
+.title a{ display:block; float:left; margin:6px 0px 0px 10px;}
+
+input[type='button'], input[type='submit']{ color:#FFF; text-shadow:1px 1px 2px #D25400; border:solid 2px #FF8602; background-image:url(../images/button_background.gif); background-repeat:repeat-x; padding:5px 8px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -moz-box-shadow:1px 1px 2px #B7B9B9; -webkit-box-shadow:1px 1px 2px #B7B9B9; box-shadow:1px 1px 2px #B7B9B9;}
+
+pre{ background-color:#DFE1E6; padding:3px 3px;}
+code{ border:solid 1px #A4CABC; display:block; background-color:#FFF;}
+
+.message{ display:none; margin:10px 0px 0px 0px; padding:10px 10px; background-color:#F0F0F0; border:solid 1px #A4CABC;}
+
+dl{ margin-left:20px;}
+dl dt tt{ font-family:Georgia, "Times New Roman", Times, serif; font-weight:bold;}
+dl dd{ margin-left:20px;}
+dl dl dd{ margin-left:40px;}
+
+.demo{ background-color:#DDD; border:1px solid #34708B; margin-bottom:30px; padding:10px;}
