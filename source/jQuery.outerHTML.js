@@ -1,37 +1,17 @@
-/*!
-* OuterHTML v2.1.0
-*
-* http://www.darlesson.com/
-*
-* Copyright 2012, Darlesson Oliveira
-* Dual licensed under the MIT and GPL licenses:
-* http://www.opensource.org/licenses/mit-license.php
-* http://www.gnu.org/licenses/gpl.html
-*
-* @requires jQuery v1.4.0 or above
-*
-* Reporting bugs, comments or suggestions: http://darlesson.com/contact/
-* Documentation and other jQuery plug-ins: http://darlesson.com/jquery/
-* Donations are welcome: http://darlesson.com/donate/
-*/
-
-(function($){
-
+(function ($) {
     $.fn.extend({
-        outerHTML: function( value ){
-
+        outerHTML: function (value) {
             // If there is no element in the jQuery object
-            if(!this.length)
+            if (!this.length)
                 return null;
 
             // Returns the value
-            else if(value === undefined) {
-
+            else if (value === undefined) {
                 var element = (this.length) ? this[0] : this,
                     result;
 
                 // Return browser outerHTML (Most newer browsers support it)
-                if(element.outerHTML)
+                if (element.outerHTML)
                     result = element.outerHTML;
 
                 // Return it using the jQuery solution
@@ -39,28 +19,25 @@
                     result = $(document.createElement("div")).append($(element).clone()).html();
 
                 // Trim the result
-                if(typeof result === "string")
+                if (typeof result === "string")
                     result = $.trim(result);
 
                 return result;
-            } else if( $.isFunction(value) ) {
+            } else if ($.isFunction(value)) {
                 // Deal with functions
 
-                this.each(function(i){
-                    var $this = $( this );
-                    $this.outerHTML( value.call(this, i, $this.outerHTML()) );
+                this.each(function (i) {
+                    var $this = $(this);
+                    $this.outerHTML(value.call(this, i, $this.outerHTML()));
                 });
-
             } else {
                 // Replaces the content
-
                 var $this = $(this),
                     replacingElements = [],
                     $value = $(value),
                     $cloneValue;
 
-                for(var x = 0; x < $this.length; x++) {
-
+                for (var x = 0; x < $this.length; x++) {
                     // Clone the value for each element being replaced
                     $cloneValue = $value.clone(true);
 
@@ -68,9 +45,8 @@
                     $this.eq(x).replaceWith($cloneValue);
 
                     // Add the replacing content to the collection
-                    for(var i = 0; i < $cloneValue.length; i++)
+                    for (var i = 0; i < $cloneValue.length; i++)
                         replacingElements.push($cloneValue[i]);
-
                 }
 
                 // Return the replacing content if any
@@ -78,5 +54,4 @@
             }
         }
     });
-
 })(jQuery);
