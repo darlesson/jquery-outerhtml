@@ -51,5 +51,10 @@ $('a').outerHTML(function(index, outerHTML){
 });
 ```
 
+## Authors
+
+Copyright (c) 2018 The jquery-outerhtml authors - see AUTHORS.txt
+
 ## License
-Copyright (c) 2015 Darlesson Oliveira. Licensed under the MIT license.
+
+This project is licensed under the MIT License - see LICENSE.txt
